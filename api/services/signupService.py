@@ -19,7 +19,7 @@ class SignupService:
       raise ParameterError('email', 'Email is already taken.')
 
     passwordAsBytes = bytes(presentation.password, 'utf-8')
-    hashed = str(hashpw(passwordAsBytes, gensalt()))
+    hashed = hashpw(passwordAsBytes, gensalt()).decode()
 
     newUser = User(email=presentation.email, password=hashed)
 
