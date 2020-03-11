@@ -19,6 +19,7 @@ depends_on = None
 def upgrade():
   op.execute("""CREATE TABLE footprints (
      id SERIAL PRIMARY KEY,
+     user_id INTEGER NOT NULL REFERENCES "Users"(id),
      footprint DOUBLE PRECISION NOT NULL,
      location GEOMETRY(POINT, 4326) NOT NULL,
      emission_date DATE

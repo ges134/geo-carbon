@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends
 from starlette.status import HTTP_201_CREATED
 
 from services.serviceFactories import getFootprintService
-from services.footprintService import FootprintPresentation
 from services.authentication import UserToken, authenticated
+from presentation.creation.footprint import FootprintPresentation
 from presentation.readonly.idPresentation import IdPresentation
 
 footprintRouter = APIRouter()
@@ -14,5 +14,5 @@ async def add_footprint(
   presentation: FootprintPresentation,
   user: UserToken = Depends(authenticated)
 ):
-  id = service.add_footprint(presentation)
+  id = service.add_footprint(presentation, user.id)
   return IdPresentation(id=id)
