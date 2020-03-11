@@ -1,17 +1,10 @@
-from typing import Tuple, Optional
-from datetime import date
-from pydantic import BaseModel
-
-from dal.userRepo import UserRepo
-
-class FootprintPresentation(BaseModel):
-  footprint: float
-  location: Tuple[float, float]
-  date: Optional[date]
+from presentation.creation.footprint import FootprintPresentation
+from dal.footprintRepo import FootprintRepo
 
 class FootprintService:
-  def __init__(self, repo: UserRepo) -> None:
+  def __init__(self, repo: FootprintRepo) -> None:
     self.repo = repo
 
-  def add_footprint(self, presentation: FootprintPresentation) -> str:
-    return ""
+  def add_footprint(self, presentation: FootprintPresentation) -> int:
+    result = self.repo.add(presentation)
+    return result

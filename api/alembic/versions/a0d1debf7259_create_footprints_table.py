@@ -17,7 +17,7 @@ depends_on = None
 
 
 def upgrade():
-  op.execute("""CREATE TABLE Footprints (
+  op.execute("""CREATE TABLE footprints (
      id SERIAL PRIMARY KEY,
      footprint DOUBLE PRECISION NOT NULL,
      location GEOMETRY(POINT, 4326) NOT NULL,
@@ -25,4 +25,4 @@ def upgrade():
   )""")
 
 def downgrade():
-  op.drop_table('Footprints')
+  op.drop_table('footprints')
