@@ -18,8 +18,7 @@ class SignupService:
     if user is not None:
       raise ParameterError('email', 'Email is already taken.')
 
-    passwordAsBytes = bytes(presentation.password, 'utf-8')
-    hashed = str(hashpw(passwordAsBytes, gensalt()))
+    hashed = hashpw(presentation.password.encode(), gensalt()).decode()
 
     newUser = User(email=presentation.email, password=hashed)
 
