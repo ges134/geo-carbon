@@ -32,8 +32,8 @@ class LoginService:
       raise InvalidCredentialsException()
 
     payload = UserToken(
-        id=user.id,
-        email=user.email
+      id=user.id,
+      email=user.email
     )
 
     return jwt.encode(dict(payload), JWT_SECRET)
