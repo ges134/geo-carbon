@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException
 from starlette.responses import JSONResponse
 from starlette import status
-from pydantic import BaseModel
 
+from presentation.creation.login import LoginPresentation
 from services.serviceFactories import getLoginService
 from presentation.readonly.userTokenPresentation import UserTokenPresentation
 from services.parameterError import ParameterError
@@ -10,10 +10,6 @@ from services.loginService import InvalidCredentialsException
 
 loginRouter = APIRouter()
 service = getLoginService()
-
-class LoginPresentation(BaseModel):
-  email: str
-  password: str
 
 @loginRouter.post('/login', response_model=UserTokenPresentation)
 async def login(presentation: LoginPresentation):
