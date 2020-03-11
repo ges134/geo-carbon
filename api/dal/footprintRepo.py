@@ -10,7 +10,7 @@ class FootprintRepo(RepoBase):
         'user_id': model.user_id,
         'long': model.location[0],
         'lat': model.location[1],
-        'date': None if not model.date else model.date.c_time()
+        'date': None if not model.date else model.date.isoformat()
       }
     )
     self.session.commit()
